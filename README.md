@@ -6,6 +6,8 @@ Given the root of a binary tree and an integer targetSum, return all root-to-lea
 
 A root-to-leaf path is a path starting from the root and ending at any leaf node. A leaf is a node with no children.
 
+![Sum of Root to Leaf nodes equals to target Sum](pathsum-ii.jpg?raw=true)
+
 # Implementation : DFS
 ```java
 /**
