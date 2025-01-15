@@ -8,7 +8,7 @@ A root-to-leaf path is a path starting from the root and ending at any leaf node
 
 ![Sum of Root to Leaf nodes equals to target Sum](pathsum-ii.jpg?raw=true)
 
-# Implementation : DFS
+# Implementation 1 : DFS
 ```java
 /**
  * Definition for a binary tree node.
@@ -51,5 +51,45 @@ class Solution {
 }
 
 ```
+## Implementation 2 : DFS with Backtracking
 
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(root == null)
+          return result;
+        traversePath(root, targetSum, 0, result, new ArrayList<Integer>());
+        return result;
+    }
+
+    private void traversePath(TreeNode node, int targetSum, int runningSum, List<List<Integer>> result,            List<Integer> path) {
+        runningSum += node.val;
+        path.add(node.val);
+        if(runningSum == targetSum && node.left == null && node.right == null) {
+            result.add(new ArrayList<Integer>(path));
+        }
+        if(node.left != null)
+        traversePath(node.left, targetSum, runningSum, result, path);
+        if(node.right != null)
+        traversePath(node.right, targetSum, runningSum, result, path);
+        path.remove(path.size()-1);
+    }
+}
+```
 
